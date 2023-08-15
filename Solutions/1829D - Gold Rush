@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool check(int n, int m, map<int, bool> &dp){
+	if(n == m){ //found
+		return true;
+	}
+	if(dp.find(n) != dp.end()) //subcase doesn't work
+		return false;
+	if(n % 3 != 0){ //leaf node
+		dp[n] = false;
+		return false;
+	}
+	if(!check(n/3, m, dp) && !check(2*(n/3), m, dp)){
+		dp[n] = false;
+		return false;
+	}
+	return true;
+}
+
+int main(){
+	int T;
+	cin>>T;
+	while(T--){
+		int n, m;
+		cin>>n>>m;
+		map<int, bool> dp;
+		if(check(n, m, dp)){
+			cout<<"YES"<<endl;
+		}
+		else{
+			cout<<"NO"<<endl;
+		}
+	}
+	return 0;
+}
+
+/*#include <bits/stdc++.h>
+using namespace std;
+
+bool check(int n, int m){
+	if(n == m){ //found
+		return true;
+	}
+	if(n % 3 != 0){ //leaf node
+		return false;
+	}
+	return (check(n/3, m) || check(2*(n/3), m));
+}
+
+int main(){
+	int T;
+	cin>>T;
+	while(T--){
+		int n, m;
+		cin>>n>>m;
+		if(check(n, m)){
+			cout<<"YES"<<endl;
+		}
+		else{
+			cout<<"NO"<<endl;
+		}
+	}
+	return 0;
+}*/
