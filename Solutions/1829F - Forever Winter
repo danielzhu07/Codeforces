@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+	int T;
+	cin>>T;
+	while(T--){
+		int N, M;
+		cin>>N>>M;
+		vector<int> v(N+1, 0);
+		for(int i = 0; i < M; i++){
+			int x, y;
+			cin>>x>>y;
+			v[x]++;
+			v[y]++;
+		}
+		int leaf = 0;
+		for(int i = 1; i <= N; i++){ //search for leaf nodes
+			if(v[i] == 1)
+				leaf++;
+		}
+		int x, y;
+		x = N - leaf - 1;
+		y = leaf / x;
+		cout<<x<<" "<<y<<endl;
+	}
+	return 0;
+}
+			
