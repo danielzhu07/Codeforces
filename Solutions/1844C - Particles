@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+int main(){
+	int T;
+	cin>>T;
+	while(T--){
+		int N;
+		cin>>N;
+		ll odd = 0, even = 0, maxo = INT_MIN, maxe = INT_MIN;
+		bool allneg = true;
+		for(int i = 0; i < N; i++){
+			ll x;
+			cin>>x;
+			if(i % 2 == 0) maxe = max(maxe, x);
+			else maxo = max(maxo, x);
+			if(x <= 0) continue;
+			allneg = false;
+			if(i % 2 == 0) even += x;
+			else odd += x;
+		}
+		if(allneg) cout<<max(maxo, maxe)<<endl;
+		else
+		    cout<<max(odd, even)<<endl;
+	}
+	return 0;
+}
+		
